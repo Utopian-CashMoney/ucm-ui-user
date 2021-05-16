@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../services/authService";
 
+
 export default class Profile extends Component {
   constructor(props) {
     super(props);
