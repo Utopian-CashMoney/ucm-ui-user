@@ -7,6 +7,7 @@ import AuthService from "./services/authService";
 
 import Login from "./components/loginComponent";
 import Profile from "./components/profileComponent";
+import AccountsComponent from "./components/accountsComponent";
 
 class App extends Component {
   constructor(props) {
@@ -63,12 +64,23 @@ class App extends Component {
               </li>
             </div>
           )}
+          {/* This is not permanent; I just have no idea where else this is going. We can discuss the front end navigation
+          layout in more detail in a future meeting. -JP */}
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/accounts"} className="nav-link">
+                Accounts
+              </Link>
+            </li>
+          </div>
         </nav>
 
         <div className="container mt-3">
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
+            {/* This is not permanent; I just have no idea where else this is going */}
+            <Route exact path="/accounts" component={AccountsComponent} />
           </Switch>
         </div>
       </div>
