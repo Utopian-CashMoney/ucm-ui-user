@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./authHeader";
 
 const API_URL = "http://localhost:8080/auth/";
 
@@ -20,7 +21,7 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem(authHeader.user.accessToken);
   }
 
   getCurrentUser() {

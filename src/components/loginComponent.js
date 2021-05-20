@@ -59,11 +59,7 @@ export default class Login extends Component {
         },
         error => {
           const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+           <h5>Wrong Email/Password</h5>
 
           this.setState({
             loading: false,
