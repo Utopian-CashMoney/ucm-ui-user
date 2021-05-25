@@ -3,6 +3,8 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/authService";
+import { Formik } from 'formik';
+ import * as Yup from "yup";
  
 const required = value => {
   if (!value) {
@@ -59,7 +61,7 @@ export default class Login extends Component {
         },
         error => {
           const resMessage =
-           <h5>Wrong Email/Password</h5>
+           <h5>Wrong Email/Password OR First confirm account via email sent to your email address</h5>
 
           this.setState({
             loading: false,
