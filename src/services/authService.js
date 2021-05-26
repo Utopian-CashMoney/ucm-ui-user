@@ -1,9 +1,24 @@
 import axios from "axios";
+import authHeader from "./authHeader";
 
 const API_URL = "http://localhost:8080/auth/";
 
 
 class AuthService {
+
+  signup(username, email, password, phone, first_name, last_name) {
+    return axios.
+    post(API_URL + "signup", {
+      username,
+      email,
+      password,
+      phone,
+      first_name,
+      last_name
+    })
+  }
+
+
   login(username, password) {
     return axios
       .post(API_URL + "signin", {
@@ -20,11 +35,11 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));;
+    return JSON.parse(localStorage.getItem('user'));
   }
 }
 
