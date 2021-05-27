@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import AuthService from "../services/authService";
 
+
 const userNameRegEx = /^[a-zA-Z0-9_.-]*$/
 const passwordRegEx = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[?@#$%^&+=])(?=\S+$).{8,}/
 const phoneRegEx = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
