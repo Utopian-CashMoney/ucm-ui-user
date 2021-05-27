@@ -9,7 +9,6 @@ const phoneRegEx = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
 const firstLastNameRegEx = /^[a-zA-Z]+$/
 
 
-
 const validationSchema = Yup.object().shape({
                     
     username: Yup.string()
