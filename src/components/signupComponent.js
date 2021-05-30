@@ -5,12 +5,8 @@ import AuthService from "../services/authService";
 
 const userNameRegEx = /^[a-zA-Z0-9_.-]*$/
 const passwordRegEx = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[?@#$%^&+=])(?=\S+$).{8,}/
-const phoneRegEx = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
+const phoneRegEx = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
 const firstLastNameRegEx = /^[a-zA-Z]+$/
-
-
-
-
 
 const validationSchema = Yup.object().shape({
                     
@@ -24,9 +20,13 @@ const validationSchema = Yup.object().shape({
         .required('Email is required'),
 
     password: Yup.string()
-        .matches(passwordRegEx, 'Atleast 8 character long, 1 Uppercase, 1 Lowercase, 1 number, 1 Special Character')
+        .matches(passwordRegEx, 'Atleast 8 character long, 1 Uppercase, 1 Lowercase, 1 number, 1 Special Character($, #, @, !,%,^,&,*,(,))')
         .max(50, 'Password cant be more than 50 letters long')
         .required('Password is required'),
+
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required("Confirm Password is required"),
 
     phone: Yup.string()
         .matches(phoneRegEx, 'Phone number is not valid')
@@ -54,6 +54,7 @@ export default class signupComponent extends Component {
                     username:'',
                     email: '',
                     password: '',
+                    confirmPassword:'',
                     phone: '',
                     first_name:'',
                     last_name:'',
@@ -96,6 +97,11 @@ export default class signupComponent extends Component {
                             <ErrorMessage name="password" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
+                            <label htmlFor="confirmPassword">Confirm Password <h7 style={{ color: 'red'}}>*</h7> </label>
+                            <Field name="confirmPassword" type="password" placeholder = "Enter Confirm Password Here" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
+                            <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
+                        </div>
+                        <div className="form-group">
                              <label htmlFor="phone">Phone <h7 style={{ color: 'red'}}>*</h7> </label>
                              <Field name="phone" type="text" placeholder = "Enter Phone Here" className={'form-control' + (errors.phone && touched.phone ? ' is-invalid' : '')} />
                              <ErrorMessage name="phone" component="div" className="invalid-feedback" />
@@ -112,8 +118,8 @@ export default class signupComponent extends Component {
                          </div>
 
                         <div className="form-group">
-                        <button type="submit" disabled = {errors.username || errors.email || errors.password || errors.phone || errors.first_name || errors.last_name || !touched.username ||
-                        !touched.email || !touched.password || !touched.phone || !touched.first_name || !touched.last_name}  className="btn btn-primary mr-2">Register</button>
+                        <button type="submit" disabled = {errors.username || errors.email || errors.password || errors.confirmPassword || errors.phone || errors.first_name || errors.last_name || !touched.username ||
+                        !touched.email || !touched.password || !touched.confirmPassword || !touched.phone || !touched.first_name || !touched.last_name}  className="btn btn-primary mr-2">Register</button>
                             
                         </div>
                     </Form>

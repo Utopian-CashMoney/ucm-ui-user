@@ -10,6 +10,7 @@ import Profile from "./components/profileComponent";
 import {Switch, Route, Link } from "react-router-dom";
 import AccountsComponent from "./components/accountsComponent";
 import CardsOnOfferComponent from "./components/cardsOnOfferComponent";
+import RegisterUserAccount from "./components/user_account/register"
 
 class App extends Component {
   constructor(props) {
@@ -104,6 +105,7 @@ class App extends Component {
             {/* This is not permanent; I just have no idea where else this is going */}
             <Route exact path="/accounts" component={AccountsComponent} />
             <Route exact path="/cards" component={CardsOnOfferComponent} />
+            <Route exact path="/user_account/register" component={RegisterUserAccount} />
           </Switch>
         </div>
       </div>
