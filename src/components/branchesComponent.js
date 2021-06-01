@@ -1,16 +1,58 @@
 import React, { Component } from "react";
-
+import PropTypes from 'prop-types';
+import BranchService from "../services/branchService"
 
 export default class BranchesComponent extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    }
+
     constructor(props) {
         super(props);
+        this.state = {
+            branches: null,
+            error: null
+        };
+    }
+
+    componentDidMount() {
+        BranchService.all().then(response => {
+            console.log(response.data)
+            this.setState({
+                branches: response.data
+            })
+        }).catch(error => {
+            if (error.response) {
+                //Non-200 Response
+                this.setState({
+                    error: error.response.statusText || "Unknown error sending request: bad response."
+                })
+                console.error("An error has occurred: Non-200 Response");
+                console.error(error.response)
+            } else if (error.request) {
+                //No response
+                this.setState({
+                    error: error.request.responseText || "Unknown error sending request: no response."
+                })
+                console.error("An error has occurred: No Response");
+                console.error(error.request)
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                this.setState({
+                    error: error.message || "Unknown error sending request: bad request."
+                })
+                console.error("An error has occurred: Couldn't send request.");
+                console.error(error.message)
+            }
+        });
     }
 
     render() {
-        return (
-            <div>
-                <h1>Branches</h1>
-                <table class="table">
+        let content = <span>No content</span>;
+        if (this.state.branches) {
+            content = <div>
+                <h3>Branches</h3>
+                <table className ="table">
                     <thead>
                         <tr>
                             <th scope="col">Location Number</th>
@@ -22,36 +64,24 @@ export default class BranchesComponent extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>This branch</td>
-                            <td>1234 Sample Rd</td>
-                            <td>Somecity</td>
-                            <td>07:00</td>
-                            <td>21:00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>That branch</td>
-                            <td>1234 Sample Rd</td>
-                            <td>Somecity</td>
-                            <td>07:00</td>
-                            <td>21:00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>The branch</td>
-                            <td>1234 Sample Rd</td>
-                            <td>Somecity</td>
-                            <td>07:00</td>
-                            <td>21:00</td>
-                        </tr>
+                    {this.state.branches.map((branch) =><tr>
+                            <td>{branch.locationNumber}</td>
+                            <td>{branch.name}</td>
+                            <td>{branch.streetAddress}</td>
+                            <td>{branch.city}</td>
+                            <td>{branch.openingTime}</td> 
+                            <td>{branch.closingTime}</td> 
+                        </tr>)}
                     </tbody>
                 </table>
             </div>
-
-
-        );
+        }
+        else if (this.state.error) {
+            content = <div className="alert alert-danger">{this.state.error}</div>
+        }
+        return (<div className="container">
+            {content}
+        </div>);
     }
 
 }
