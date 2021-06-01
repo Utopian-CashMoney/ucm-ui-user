@@ -9,6 +9,8 @@ import Login from "./components/loginComponent";
 import Profile from "./components/profileComponent";
 import {Switch, Route, Link } from "react-router-dom";
 import AccountsComponent from "./components/accountsComponent";
+import CardsOnOfferComponent from "./components/cardsOnOfferComponent";
+import RegisterUserAccount from "./components/user_account/register"
 import BranchesComponent from "./components/branchesComponent";
 
 class App extends Component {
@@ -93,7 +95,6 @@ class App extends Component {
               </Link>
             </li>
           </div>
-
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/branches"} className="nav-link">
@@ -101,7 +102,6 @@ class App extends Component {
               </Link>
             </li>
           </div>
-
         </nav>
 
         <div className="container mt-3">
@@ -111,7 +111,9 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             {/* This is not permanent; I just have no idea where else this is going */}
             <Route exact path="/accounts" component={AccountsComponent} />
+            <Route exact path="/cards" component={CardsOnOfferComponent} />
             <Route exact path="/branches" component={BranchesComponent} />
+            <Route exact path="/user_account/register" component={RegisterUserAccount} />
           </Switch>
         </div>
       </div>
