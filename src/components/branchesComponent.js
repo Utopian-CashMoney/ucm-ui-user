@@ -55,22 +55,16 @@ export default class BranchesComponent extends Component {
                 <table className ="table">
                     <thead>
                         <tr>
-                            <th scope="col">Location Number</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">City</th>
-                            <th scope="col">Opening Time</th>
-                            <th scope="col">Closing Time</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Hours</th>
                         </tr>
                     </thead>
                     <tbody>
                     {this.state.branches.map((branch) =><tr>
-                            <td>{branch.locationNumber}</td>
                             <td>{branch.name}</td>
-                            <td>{branch.streetAddress}</td>
-                            <td>{branch.city}</td>
-                            <td>{branch.openingTime}</td> 
-                            <td>{branch.closingTime}</td> 
+                            <td>{branch.streetAddress}, {branch.city}, {branch.zip}</td>
+                            <td>{branch.openingTime} - {branch.closingTime}</td> 
                         </tr>)}
                     </tbody>
                 </table>
