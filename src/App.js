@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'mdbreact/dist/css/mdb.css';
 
 import "./App.css";
+import LoanOnOfferComponent from "./components/LoansOnOfferComponent";
 
 
 import AuthService from "./services/authService";
@@ -89,6 +90,11 @@ class App extends Component {
                 Accounts
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/loans"} className="nav-link">
+                Loans
+              </Link>
+            </li>
           </div>
         </nav>
 
@@ -101,6 +107,7 @@ class App extends Component {
             {/* This is not permanent; I just have no idea where else this is going */}
             <Route exact path="/accounts" component={AccountsComponent} />
             <Route exact path="/user_account/register" component={RegisterUserAccount} />
+            <Route exact path="/loans" component={LoanOnOfferComponent} />
           </Switch>
         </div>
       </div>

@@ -44,10 +44,10 @@ export const NavSidebar = () => {
             
         </li>
         <li class="has-subnav">
-            <a href="#">
+            <a href="/loans">
                <i class="fa fa-list fa-2x"></i>
                 <span class="nav-text">
-                    Forms
+                    Loans
                 </span>
             </a>
             
