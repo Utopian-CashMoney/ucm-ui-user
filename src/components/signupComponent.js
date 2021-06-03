@@ -80,7 +80,6 @@ export default class signupComponent extends Component {
                 render={({ errors, status, touched }) => (
                     
                     <Form>
-                      
                       <div className="form-group">
                             <label htmlFor="username">UserName <h7 style={{ color: 'red'}}>*</h7> </label>
                              <Field name="username" type="text" placeholder = "Enter Username Here" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
