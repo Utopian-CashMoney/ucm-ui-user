@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../services/authService";
+import profileImg from '../avatar.png';
 
-
-import {DashboardLayout} from './Layout';
 export default class Profile extends Component{
 
     constructor(props) {
@@ -30,63 +29,29 @@ export default class Profile extends Component{
         }
     
         const { currentUser } = this.state;
-    
+
         return (
-          <DashboardLayout>
-          <link rel="stylesheet" href="../styles.css"/>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h4 class="mb-0">First Name</h4>
-                    </div>
-                    <h4 class="col-sm-9 text-secondary">
-                      {currentUser.firstName}
-                    </h4>
-                    <hr></hr>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h4 class="mb-0">Last Name</h4>
-                    </div>
-                    <h4 class="col-sm-9 text-secondary">
-                      {currentUser.lastName}
-                    </h4>
-                    <hr></hr>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h4 class="mb-0">Username</h4>
-                    </div>
-                    <h4 class="col-sm-9 text-secondary">
-                      {currentUser.username}
-                    </h4>
-                    <hr></hr>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h4 class="mb-0">Email</h4>
-                    </div>
-                    <h4 class="col-sm-9 text-secondary">
-                      {currentUser.email}
-                    </h4>
-                    <hr></hr>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h4 class="mb-0">Phone</h4>
-                    </div>
-                    <h4 class="col-sm-9 text-secondary">
-                      {currentUser.phNum}
-                    </h4>
-                    <hr></hr>
-                  </div>
-                </div>
-              </div>
+            <div>
+            <h1 className='profile'>Profile</h1>
+            <img src={profileImg} class="avatar"/>
+            <h4 className='profileFname'>First Name: </h4>
+            <h4 className='profileFnameTwo'>{currentUser.firstName} </h4>
+            <h4 className='profileLname'>Last Name: </h4>
+            <h4 className='profileLnameTwo'>{currentUser.lastName} </h4>
+            <h4 className='profileEmail'>Email: </h4>
+            <h4 className='profileEmailTwo'>{currentUser.email} </h4>
+            <h4 className='profilePnum'>Contact Number: </h4>
+            <h4 className='profilePnumTwo'>{currentUser.phNum} </h4>
+            <h4 className='profileAddress'>Address: </h4>
+            <h4 className='profileAddressTwo'> Street Address Here </h4>
+            <h4 className='profileCity'>City: </h4>
+            <h4 className='profileCityTwo'> City Here</h4>
+            <h4 className='profileState'>State: </h4>
+            <h4 className='profileStateTwo'> State Here</h4>
+            <h4 className='profileZipcode'>Zipcode: </h4>
+            <h4 className='profileZipcodeTwo'> Zipcode Here</h4>
             </div>
-          </DashboardLayout>
-           
+          
         );
       }
 }

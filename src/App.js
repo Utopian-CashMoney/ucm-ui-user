@@ -4,6 +4,7 @@ import 'mdbreact/dist/css/mdb.css';
 
 import "./App.css";
 import LoanOnOfferComponent from "./components/LoansOnOfferComponent";
+import SignupLoanComponent from "./components/SignupLoanComponent";
 
 
 import AuthService from "./services/authService";
@@ -95,6 +96,11 @@ class App extends Component {
                 Loans
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/profile"} className="nav-link">
+                Profile
+              </Link>
+            </li>
           </div>
         </nav>
 
@@ -108,6 +114,7 @@ class App extends Component {
             <Route exact path="/accounts" component={AccountsComponent} />
             <Route exact path="/user_account/register" component={RegisterUserAccount} />
             <Route exact path="/loans" component={LoanOnOfferComponent} />
+            <Route exact path="/signupLoan" component={SignupLoanComponent} />
           </Switch>
         </div>
       </div>
