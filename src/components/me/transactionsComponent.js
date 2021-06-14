@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Table} from "react-bootstrap";
+import {Pagination, Table} from "react-bootstrap";
 
 function Transaction(props) {
     return <tr>
@@ -22,6 +22,15 @@ export default class TransactionsComponent extends Component {
 
     render() {
         return <div>
+            <Pagination>
+                <Pagination.First />
+                <Pagination.Prev />
+                <Pagination.Item key={1} active={true}>1</Pagination.Item>
+                <Pagination.Item key={2}>2</Pagination.Item>
+                <Pagination.Item key={3}>3</Pagination.Item>
+                <Pagination.Next />
+                <Pagination.Last />
+            </Pagination>
             <Table striped hover size="sm">
                 <thead>
                 <tr>
