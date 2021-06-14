@@ -1,7 +1,8 @@
 import axios from "axios";
-import authHeader from "./authHeader";
 
 const API_URL = "http://localhost:8080/auth/";
+
+const API_URL2 = "http://localhost:8081/loans/";
 
 
 class AuthService {
@@ -41,6 +42,19 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));
   }
+
+  loanSignup(max_amount, name, interest_rate, balance, start_date) {
+    return axios.
+    post(API_URL2 + "loansignup?userId=" + this.getCurrentUser().id
+    , {
+      max_amount,
+      name,
+      interest_rate,
+      balance,
+      start_date
+    })
+  }
+
 }
 
 export default new AuthService();
