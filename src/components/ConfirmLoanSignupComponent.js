@@ -32,7 +32,7 @@ export default class ConfirmLoanSignupComponent extends Component {
 
       handleConfirm(){
         const loanInfo = this.props.location.state;
-        console.log("Balance: " + loanInfo.amount);
+    
            AuthService.loanSignupSuccess(loanInfo.salary,
            loanInfo.name,
            loanInfo.balance,

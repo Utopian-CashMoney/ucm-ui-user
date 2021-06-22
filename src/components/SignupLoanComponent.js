@@ -4,24 +4,24 @@ import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
 import AuthService from "../services/authService";
 
-const salaryRegex = /^[0-9]*$/
-const amountRegex = /^[0-9]*$/
-const termRegex = /^[0-9]*$/
+const salaryRegex = /^[1-9][0-9]*$/
+const amountRegex = /^[1-9][0-9]*$/
+const termRegex = /^[1-9][0-9]*$/
 
 
 
 const validationSchema = Yup.object().shape({
 
     salary: Yup.string()
-    .matches(salaryRegex, 'Only numbers are allowed')
+    .matches(salaryRegex, 'Only 1-9 is allowed')
     .required('Salary is required'),
 
     amount: Yup.string()
-    .matches(amountRegex, 'Only numbers are allowed')
+    .matches(amountRegex, 'Only 1-9 is allowed')
     .required('Amount is required'),
 
     term: Yup.string()
-        .matches(termRegex, 'Only numbers are allowed')
+        .matches(termRegex, 'Only 1-9 is allowed')
         .required('term is required'),
    
 })

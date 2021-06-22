@@ -16,6 +16,8 @@ import AccountsComponent from "./components/accountsComponent";
 import RegisterUserAccount from "./components/user_account/register"
 import ConfirmLoanSignupComponent from "./components/ConfirmLoanSignupComponent";
 import LoanSignupSuccessComponent from "./components/LoanSignupSuccessComponent";
+import BranchesComponent from "./components/branchesComponent";
+import UpdateUserProfileComponent from "./components/UpdateUserProfileComponent";
 
 
 class App extends Component {
@@ -115,6 +117,8 @@ class App extends Component {
             {/* This is not permanent; I just have no idea where else this is going */}
             <Route exact path="/accounts" component={AccountsComponent} />
             <Route exact path="/user_account/register" component={RegisterUserAccount} />
+            <Route exact path="/branches" component={BranchesComponent} />
+            <Route exact path="/updateProfile" component={UpdateUserProfileComponent} />
             <Route exact path="/loans" component={LoanOnOfferComponent} />
             <Route exact path="/signupLoan" component={SignupLoanComponent} />
             <Route exact path="/confirmLoanSignup" component={ConfirmLoanSignupComponent} />
