@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import authHeader from "./authHeader";
 import Page from "../dto/page";
+import TransactionDTO from "../dto/transaction";
 
 const API_URL = "http://localhost:8030/api/transaction";
 
@@ -30,12 +31,13 @@ class TransactionService {
     }
 
     /**
-     *
+     * Parse the response
      * @param {AxiosResponse<any>} response
+     * @return {Page} Page
      */
     parse(response) {
         let data = response.data;
-        return new Page(
+        let page = new Page(
             data.content,
             data.pageable,
             data.last,
@@ -48,6 +50,13 @@ class TransactionService {
             data.first,
             data.empty
         )
+
+        //Convert to class type for each object
+        page.content.map((value) => (
+            new TransactionDTO(value.accountNumber, value.reason, value.amount, value.destination, value.timestamp, value.status)
+        ))
+
+        return page;
     }
 }
 

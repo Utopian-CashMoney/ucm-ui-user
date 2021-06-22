@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import {Pagination, Table} from "react-bootstrap";
 import TransactionService from "../../services/transactionsService"
 
+/**
+ * Transaction element
+ * @param props
+ * @return {JSX.Element}
+ * @constructor
+ */
 function Transaction(props) {
-    return <tr>
-        <td>{props.account}</td>
+    return <tr key={props.index}>
+        <th scope="col">{props.accountNumber}</th>
         <td>{props.reason}</td>
         <td>{props.amount}</td>
         <td>{props.destination}</td>
@@ -55,6 +61,21 @@ export default class TransactionsComponent extends Component {
 
     render() {
         let tableBody = null;
+        let alert = null;
+        if(this.state.transactions) {
+            tableBody = <tbody>
+            {this.state.transactions.content.map((value, index) => (
+                <Transaction accountNumber={value.accountNumber} reason={value.reason} amount={value.amount}
+                destination={value.destination} timestamp={value.timestamp} status={value.status} index={index}/>
+            ))}
+            </tbody>
+        }
+        else if(this.state.error) {
+            alert = <div className="alert alert-danger">{this.state.error}</div>
+        }
+        else {
+
+        }
 
         return <div>
             <Pagination>
@@ -66,15 +87,16 @@ export default class TransactionsComponent extends Component {
                 <Pagination.Next />
                 <Pagination.Last />
             </Pagination>
+            {alert}
             <Table striped hover size="sm">
                 <thead>
                 <tr>
-                    <th>Account</th>
-                    <th>Message</th>
-                    <th>Amount</th>
-                    <th>Destination</th>
-                    <th>Timestamp</th>
-                    <th>Status</th>
+                    <th scope={"col"}>Account</th>
+                    <th scope={"col"}>Message</th>
+                    <th scope={"col"}>Amount</th>
+                    <th scope={"col"}>Destination</th>
+                    <th scope={"col"}>Timestamp</th>
+                    <th scope={"col"}>Status</th>
                 </tr>
                 </thead>
                 {tableBody}
