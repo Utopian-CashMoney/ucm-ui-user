@@ -44,10 +44,10 @@ export default class TransactionsComponent extends Component {
             tableBody = <tbody>
             {this.state.transactions.content.map((value, index) => (
                 <Transaction accountNumber={value.accountNumber} reason={value.reason} amount={value.amount}
-                destination={value.destination} timestamp={value.timestamp} status={value.status} index={index}/>
+                destination={value.destination} timestamp={value.timestamp} status={value.status} index={index} key={index}/>
             ))}
             </tbody>
-            pageControls = <PageControls activePage={this.state.transactions.number} pageCount={this.state.transactions.totalPages} callback={this.getPage} />
+            pageControls = <PageControls activePage={this.state.transactions.number} pageCount={this.state.transactions.totalPages } callback={this.getPage} />
         }
         else if(this.state.error) {
             alert = <div className="alert alert-danger">{this.state.error}</div>
