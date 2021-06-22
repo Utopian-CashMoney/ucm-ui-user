@@ -78,4 +78,7 @@ export default class BranchesComponent extends Component {
         </div>);
     }
 
+
+}
+
 }
