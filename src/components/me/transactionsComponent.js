@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {Pagination, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
+import PageControls from "../pageControls";
 import TransactionService from "../../services/transactionsService"
 
 /**
@@ -22,14 +23,60 @@ function Transaction(props) {
 export default class TransactionsComponent extends Component {
     constructor(props) {
         super(props);
+
+        this.getPage = this.getPage.bind(this);
+
         this.state = {
             transactions: null,
             error: null,
-            currentUser: null,
+            currentUser: null
         }
     }
     componentDidMount() {
-        TransactionService.get().then(response => {
+        this.getPage(1)
+    }
+
+    render() {
+        let tableBody = null;
+        let alert = null;
+        let pageControls = null;
+        if(this.state.transactions) {
+            tableBody = <tbody>
+            {this.state.transactions.content.map((value, index) => (
+                <Transaction accountNumber={value.accountNumber} reason={value.reason} amount={value.amount}
+                destination={value.destination} timestamp={value.timestamp} status={value.status} index={index}/>
+            ))}
+            </tbody>
+            pageControls = <PageControls activePage={this.state.transactions.number} pageCount={this.state.transactions.totalPages} callback={this.getPage} />
+        }
+        else if(this.state.error) {
+            alert = <div className="alert alert-danger">{this.state.error}</div>
+        }
+        else {
+
+        }
+
+        return <div>
+            {alert}
+            {pageControls}
+            <Table striped hover size="sm">
+                <thead>
+                <tr>
+                    <th scope={"col"}>Account</th>
+                    <th scope={"col"}>Message</th>
+                    <th scope={"col"}>Amount</th>
+                    <th scope={"col"}>Destination</th>
+                    <th scope={"col"}>Timestamp</th>
+                    <th scope={"col"}>Status</th>
+                </tr>
+                </thead>
+                {tableBody}
+            </Table>
+        </div>;
+    }
+
+    getPage(page) {
+        TransactionService.get(page).then(response => {
             this.setState({
                 transactions: TransactionService.parse(response)
             })
@@ -57,50 +104,5 @@ export default class TransactionsComponent extends Component {
                 console.error(error.message)
             }
         });
-    }
-
-    render() {
-        let tableBody = null;
-        let alert = null;
-        if(this.state.transactions) {
-            tableBody = <tbody>
-            {this.state.transactions.content.map((value, index) => (
-                <Transaction accountNumber={value.accountNumber} reason={value.reason} amount={value.amount}
-                destination={value.destination} timestamp={value.timestamp} status={value.status} index={index}/>
-            ))}
-            </tbody>
-        }
-        else if(this.state.error) {
-            alert = <div className="alert alert-danger">{this.state.error}</div>
-        }
-        else {
-
-        }
-
-        return <div>
-            <Pagination>
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item key={1} active={true}>1</Pagination.Item>
-                <Pagination.Item key={2}>2</Pagination.Item>
-                <Pagination.Item key={3}>3</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
-            </Pagination>
-            {alert}
-            <Table striped hover size="sm">
-                <thead>
-                <tr>
-                    <th scope={"col"}>Account</th>
-                    <th scope={"col"}>Message</th>
-                    <th scope={"col"}>Amount</th>
-                    <th scope={"col"}>Destination</th>
-                    <th scope={"col"}>Timestamp</th>
-                    <th scope={"col"}>Status</th>
-                </tr>
-                </thead>
-                {tableBody}
-            </Table>
-        </div>;
     }
 }

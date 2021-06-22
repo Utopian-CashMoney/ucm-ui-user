@@ -33,7 +33,7 @@ export default class Page {
         this.totalPages = totalPages;
         this.totalElements = totalElements;
         this.size = size;
-        this.number = number;
+        this.number = number + 1;
         this.sort = sort;
         this.numberOfElements = numberOfElements;
         this.first = first;
