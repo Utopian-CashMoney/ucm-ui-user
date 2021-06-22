@@ -1,7 +1,7 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import authHeader from "./authHeader";
 
-const API_URL = "http://localhost:8080/api/user_account";
+const API_URL = "http://localhost:8030/api/user_account";
 
 
 class UserAccountService {

@@ -20,8 +20,6 @@ import ConfirmLoanSignupComponent from "./components/ConfirmLoanSignupComponent"
 import LoanSignupSuccessComponent from "./components/LoanSignupSuccessComponent";
 import BranchesComponent from "./components/branchesComponent";
 import UpdateUserProfileComponent from "./components/UpdateUserProfileComponent";
-
-import BranchesComponent from "./components/branchesComponent";
 import TransactionsComponent from "./components/me/transactionsComponent";
 import {Dropdown, Nav, NavItem, NavLink} from "react-bootstrap";
 
@@ -136,7 +134,8 @@ class App extends Component {
                         <Route exact path="/loanSignupSuccess" component={LoanSignupSuccessComponent} />
                     </Switch>
                 </div>
-            </div>
+            </div>)
+    }
 }
 
 export default App;
