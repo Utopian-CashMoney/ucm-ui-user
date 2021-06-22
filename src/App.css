@@ -183,18 +183,30 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 120px;
   margin-bottom: -250px;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
+}
+
+.profileEdit {
+  border: bold;
+  margin-left: 90%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-30%, 40%);
+  color: rgb(13, 171, 219);
+  padding: 17px 38px;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
 }
 
 .profileFname {
   position: relative;
   top: 350px;
   left: 200px;
-  font-size: 20px;
+  font-size: 18px;
     /* border: 3px solid #73AD21; */
 }
 .profileFnameTwo {
@@ -209,7 +221,7 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
     /* border: 3px solid #73AD21; */
 }
 
@@ -217,7 +229,7 @@ body{
   position: relative;
   top: 250px;
   left: 680px;
-  font-size: 20px;
+  font-size: 18px;
   /* border: 3px solid #73AD21; */
 }
 .profileLnameTwo {
@@ -232,13 +244,13 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 .profileEmail {
   position: relative;
   top: 270px;
   left: 200px;
-  font-size: 20px;
+  font-size: 18px;
     /* border: 3px solid #73AD21; */
 }
 .profileEmailTwo {
@@ -253,14 +265,14 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profilePnum {
   position: relative;
   top: 290px;
   left: 200px;
-  font-size: 20px;
+  font-size: 18px;
 }
 .profilePnumTwo {
   position: relative;
@@ -274,14 +286,14 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileAddress {
   position: relative;
   top: 310px;
   left: 200px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileAddressTwo {
@@ -296,14 +308,14 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileCity {
   position: relative;
   top: 330px;
   left: 200px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileCityTwo {
@@ -318,14 +330,14 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileState {
   position: relative;
   top: 350px;
   left: 200px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileStateTwo {
@@ -340,19 +352,19 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileZipcode {
   position: relative;
-  top: 250px;
+  top: 260px;
   left: 680px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .profileZipcodeTwo {
   position: relative;
-  top: 245px;
+  top: 250px;
   left: 680px;
   width: 32%;
   padding: 8px 10px;
@@ -362,7 +374,7 @@ body{
   border: 3px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 
@@ -373,4 +385,50 @@ h3{
 h5 {
   font-weight: bold;
   margin-left: 325px;
+}
+
+.loanConfirmHeading {
+  text-align: center;
+}
+
+.monthlyPayValue {
+  color: green;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.monthlyPay {
+  text-align: center;
+  margin-top: 130px;
+}
+
+.continueLoanSignup {
+  font-weight: bold;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.loanConfirmButton {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.loanCancelButton {
+  background-color:red; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 50px;
+  margin-left: 490px;
+  margin-right: 100px;
 }

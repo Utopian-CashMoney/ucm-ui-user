@@ -15,9 +15,16 @@ import {Switch, Route, Link} from "react-router-dom";
 import AccountsComponent from "./components/accountsComponent";
 import CardsOnOfferComponent from "./components/cardsOnOfferComponent";
 import RegisterUserAccount from "./components/user_account/register"
+
+import ConfirmLoanSignupComponent from "./components/ConfirmLoanSignupComponent";
+import LoanSignupSuccessComponent from "./components/LoanSignupSuccessComponent";
+import BranchesComponent from "./components/branchesComponent";
+import UpdateUserProfileComponent from "./components/UpdateUserProfileComponent";
+
 import BranchesComponent from "./components/branchesComponent";
 import TransactionsComponent from "./components/me/transactionsComponent";
 import {Dropdown, Nav, NavItem, NavLink} from "react-bootstrap";
+
 
 class App extends Component {
     constructor(props) {
@@ -121,15 +128,15 @@ class App extends Component {
                         <Route exact path="/cards" component={CardsOnOfferComponent}/>
                         <Route exact path="/branches" component={BranchesComponent}/>
                         <Route exact path="/user_account/register" component={RegisterUserAccount}/>
+                        <Route exact path="/updateProfile" component={UpdateUserProfileComponent} />
                         <Route exact path="/loans" component={LoanOnOfferComponent}/>
                         <Route exact path="/signupLoan" component={SignupLoanComponent}/>
                         <Route exact path="/me/transactions" component={TransactionsComponent}/>
+                        <Route exact path="/confirmLoanSignup" component={ConfirmLoanSignupComponent} />
+                        <Route exact path="/loanSignupSuccess" component={LoanSignupSuccessComponent} />
                     </Switch>
                 </div>
             </div>
-
-        );
-    }
 }
 
 export default App;
