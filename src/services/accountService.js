@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 
-const API_URL = "http://localhost:8080/api/accounts";
+const API_URL = "http://localhost:8030/api/accounts";
 
 
 class AccountService {
