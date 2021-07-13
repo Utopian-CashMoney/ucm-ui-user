@@ -58,6 +58,10 @@ export default class signupComponent extends Component {
                     phone: '',
                     first_name:'',
                     last_name:'',
+                    address:'',
+                    city:'',
+                    state:'',
+                    zipcode:''
                 }}  
 
                 validationSchema = {validationSchema}
@@ -65,7 +69,8 @@ export default class signupComponent extends Component {
                 onSubmit={(fields) => {
 
                     AuthService.signup(fields.username, fields.email, fields.password,
-                        fields.phone, fields.first_name, fields.last_name)
+                        fields.phone, fields.first_name, fields.last_name, fields.address,
+                        fields.city, fields.state, fields.zipcode)
                         .then(
                         () => {
                           this.props.history.push("/login");
@@ -80,7 +85,6 @@ export default class signupComponent extends Component {
                 render={({ errors, status, touched }) => (
                     
                     <Form>
-                      
                       <div className="form-group">
                             <label htmlFor="username">UserName <h7 style={{ color: 'red'}}>*</h7> </label>
                              <Field name="username" type="text" placeholder = "Enter Username Here" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
@@ -116,10 +120,32 @@ export default class signupComponent extends Component {
                              <Field name="last_name" type="text" placeholder = "Enter Last Name Here" className={'form-control' + (errors.last_name && touched.last_name ? ' is-invalid' : '')} />
                              <ErrorMessage name="last_name" component="div" className="invalid-feedback" />
                          </div>
+                         <div className="form-group">
+                             <label htmlFor="address">Address <h7 style={{ color: 'red'}}>*</h7> </label>
+                             <Field name="address" type="text" placeholder = "Enter Address Here" className={'form-control' + (errors.address && touched.address ? ' is-invalid' : '')} />
+                             <ErrorMessage name="address" component="div" className="invalid-feedback" />
+                         </div>
+                         <div className="form-group">
+                             <label htmlFor="city">City <h7 style={{ color: 'red'}}>*</h7> </label>
+                             <Field name="city" type="text" placeholder = "Enter City Here" className={'form-control' + (errors.city && touched.city ? ' is-invalid' : '')} />
+                             <ErrorMessage name="city" component="div" className="invalid-feedback" />
+                         </div>
+                         <div className="form-group">
+                             <label htmlFor="state">State <h7 style={{ color: 'red'}}>*</h7> </label>
+                             <Field name="state" type="text" placeholder = "Enter State Here" className={'form-control' + (errors.state && touched.state ? ' is-invalid' : '')} />
+                             <ErrorMessage name="state" component="div" className="invalid-feedback" />
+                         </div>
+                         <div className="form-group">
+                             <label htmlFor="zipcode">Zipcode <h7 style={{ color: 'red'}}>*</h7> </label>
+                             <Field name="zipcode" type="text" placeholder = "Enter Zipcode Here" className={'form-control' + (errors.zipcode && touched.zipcode ? ' is-invalid' : '')} />
+                             <ErrorMessage name="zipcode" component="div" className="invalid-feedback" />
+                         </div>
 
                         <div className="form-group">
-                        <button type="submit" disabled = {errors.username || errors.email || errors.password || errors.confirmPassword || errors.phone || errors.first_name || errors.last_name || !touched.username ||
-                        !touched.email || !touched.password || !touched.confirmPassword || !touched.phone || !touched.first_name || !touched.last_name}  className="btn btn-primary mr-2">Register</button>
+                        <button type="submit" disabled = {errors.username || errors.email || errors.password || errors.confirmPassword || errors.phone || errors.first_name || errors.last_name 
+                        || errors.address || errors.city || errors.state || errors.zipcode || !touched.username || !touched.email || !touched.password || !touched.confirmPassword 
+                        || !touched.phone || !touched.first_name || !touched.last_name || !touched.address || !touched.city || !touched.state || !touched.zipcode}  
+                        className="btn btn-primary mr-2">Register</button>
                             
                         </div>
                     </Form>
