@@ -1,0 +1,14 @@
+---
+
+- name: Play 1
+  hosts: localhost
+  tasks:
+    - name: Upload user frontend to S3 bucket
+      community.aws.s3_sync:
+        aws_access_key: AKIAS6IWTGO2OMYQD7I2
+        aws_secret_key: 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
+        bucket: cashmoney-ansible-test
+        file_root: /build
+        permission: public-read
+        include: "*"
+        
