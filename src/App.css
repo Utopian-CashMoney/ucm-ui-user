@@ -377,6 +377,33 @@ body{
   font-size: 18px;
 }
 
+.accountDeleteButton {
+  background-color:red; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin-top: 290px;
+  margin-left: 1000px;
+  padding: 13px 30px;
+}
+
+
+ .ModalStyle { 
+  background-color: #fefefef6;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+.accountDeleteConfirm {
+  margin-left: 235px;
+  font-weight: bold;
+}
+
 
 h3{
   font-weight: bold;
@@ -431,4 +458,216 @@ h5 {
   margin-top: 50px;
   margin-left: 490px;
   margin-right: 100px;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+label {
+  font-family: "Raleway", sans-serif;
+  font-size: 11pt;
+}
+#forgot-pass {
+  color:blue;
+  font-family: "Raleway", sans-serif;
+  font-size: 10pt;
+  /* margin-top: 3px; */
+  margin-top: 26px;
+  text-align: center;
+  /* text-align: right; */
+}
+#card {
+  background:white;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+  height: 410px;
+  margin: 6rem auto 8.1rem auto;
+  width: 329px;
+}
+#card-content {
+  padding: 12px 44px;
+}
+
+#card2 {
+  background:rgb(202, 235, 233);
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+  height: 410px;
+  margin: 6rem auto 8.1rem auto;
+  width: 329px;
+}
+#card-content2 {
+  padding: 80px 80px;
+}
+.forgetSend{
+  background-color: rgb(139, 139, 216);
+  font-family: "Raleway", sans-serif;
+  font-size: 15pt;
+  margin-top: 16px;
+  margin-left: 48px;
+  text-align: center;
+}
+
+.passwordReset{
+  background-color:lawngreen;
+  font-family: "Raleway", sans-serif;
+  font-size: 15pt;
+  margin-top: 16px;
+  margin-left: 80px;
+  text-align: center;
+}
+.forgetEmail{
+  font-weight: bold;
+}
+#card-title {
+  font-family: "Raleway Thin", sans-serif;
+  letter-spacing: 4px;
+  padding-bottom: 23px;
+  padding-top: 13px;
+  text-align: center;
+}
+#signup {
+  color:blue;
+  font-family: "Raleway", sans-serif;
+  font-size: 10pt;
+  margin-top: 16px;
+  margin-left: 48px;
+  text-align: center;
+}
+#submit-btn {
+  background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
+  border: none;
+  border-radius: 21px;
+  box-shadow: 0px 1px 8px #24c64f;
+  cursor: pointer;
+  color: white;
+  font-family: "Raleway SemiBold", sans-serif;
+  height: 42.3px;
+  margin: 0 auto;
+  margin-top: 50px;
+  transition: 0.25s;
+  width: 153px;
+}
+#submit-btn:hover {
+  box-shadow: 0px 1px 18px #24c64f;
+}
+.form {
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+}
+.form-border {
+  background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+  height: 1px;
+  width: 100%;
+}
+.form-control {
+  background: #fbfbfb;
+  border: none;
+  outline: none;
+  padding-top: 14px;
+}
+.underline-title {
+  background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+  height: 2px;
+  margin: -1.1rem auto 0 auto;
+  width: 89px;
+}
+
+.alert {
+  display:inline-block;
+}
+
+.loginSignIn{
+    margin: 0 auto;
+    display: block;
+    background-color:cyan;
+}
+
+.passwordResetConfirm{
+  margin-top: 200px;
+  margin-left: 100px;
+}
+
+.homePage{
+  background-color: cornflowerblue;
+  font-size: large;
+  margin-top: 100px;
+  margin-left: 550px;
+}
+
+.labelForgetPassword{
+  font-weight: bold;
+}
+
+
+
+.wrapper {
+  display: grid;
+  padding-top: 80px;
+  padding-left: 60px;
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 450px;
+  row-gap: 15px;
+
+}
+
+.wrapper2 {
+  display: grid;
+  color: #5fa2db;
+  margin-top: 90px;
+  margin-left: -240px;
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 450px;
+  row-gap: 15px;
+
+}
+
+.wrapper3 {
+  display: grid;
+  margin-top: 15px;
+  margin-left: 75px;
+  grid-template-columns: 550px 510px 100px;
+  /* grid-template-columns: 550px 810px 800px; */
+
+  column-gap: auto;
+}
+
+.btnApply{
+  background-color:lightseagreen;
+  font-size: 15px;
+  height: 30px;
+  width: 90px;
+}
+
+
+.creditcardImg1{
+  position: relative;
+  width: 325px;
+  height: 250px;
+}
+
+.containerCard  {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 80px;
+  transform: translate(-50%, -50%);
+  height:900px;
+  width:1500px;
+  background: #f2f2f2;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+}
+
+.cardTitle{
+  font-size: 70px;
+  position: relative;
+  margin-left: 400px;
 }
