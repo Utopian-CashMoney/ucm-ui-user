@@ -113,9 +113,9 @@ class AuthService {
 
   getAllCreditCardsFromStorage() {
     return JSON.parse(localStorage.getItem('credit'));
-
   }
 
+  
   userCreditCardSignup(userId, cardName) {
     return axios.
     post(API_URL + "user_credit_card_signup?userId=" + userId + "&cardName=" + cardName);
