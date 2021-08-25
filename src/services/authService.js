@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8000/auth/";
 
-const API_URL2 = "http://localhost:8081/loans/";
+const API_URL2 = "http://localhost:8020/loans/"; //Why the heck is this here? This is for the Loans microservice... -JP
 
 
 class AuthService {

@@ -1,6 +1,6 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/branches";
+const API_URL = "http://localhost:8010/api/branches";
 
 
 class BranchesService {

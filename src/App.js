@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'mdbreact/dist/css/mdb.css';
 
@@ -13,48 +13,52 @@ import Login from "./components/loginComponent";
 import Profile from "./components/profile";
 import { Switch, Route, Link } from "react-router-dom";
 import AccountsComponent from "./components/accountsComponent";
+import CardsOnOfferComponent from "./components/cardsOnOfferComponent";
 import RegisterUserAccount from "./components/user_account/register"
+
 import ConfirmLoanSignupComponent from "./components/ConfirmLoanSignupComponent";
 import LoanSignupSuccessComponent from "./components/LoanSignupSuccessComponent";
 import BranchesComponent from "./components/branchesComponent";
 import UpdateUserProfileComponent from "./components/UpdateUserProfileComponent";
+
 import ForgetPasswordComponent from "./components/ForgetPasswordComponent";
 import ResetPasswordComponent from "./components/ResetPasswordComponent";
 import ForgetPasswordEmailComponent from "./components/ForgetPasswordEmailComponent";
 import CreditCardSignUpComponent from "./components/CreditCardSignUpComponent";
 import CreditCardSignUpSuccessComponent from "./components/CreditCardSignUpSuccessComponent";
+import TransactionsComponent from "./components/me/transactionsComponent";
+import {Dropdown, Nav, NavItem, NavLink} from "react-bootstrap";
+
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.logOut = this.logOut.bind(this);
+    constructor(props) {
+        super(props);
+        this.logOut = this.logOut.bind(this);
 
-    this.state = {
-      currentUser: undefined,
-    };
+        this.state = {
+            currentUser: undefined,
+        };
 
-  }
-
-  componentDidMount() {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      this.setState({
-        currentUser: user,
-      });
     }
 
+    componentDidMount() {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            this.setState({
+                currentUser: user,
+            });
+        }
+
+    }
   }
 
-  logOut() {
-    AuthService.logout();
-  }
+    logOut() {
+        AuthService.logout();
+    }
 
   render() {
 
-    const { currentUser } = this.state;
-
-    return (
-      <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        const {currentUser} = this.state;
 
           {currentUser != undefined ? (
             <div>
