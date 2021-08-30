@@ -671,3 +671,233 @@ label {
   position: relative;
   margin-left: 400px;
 }
+
+.homeCard {
+    margin-top: 150px;
+}
+
+.bankAccountCard{
+  position: relative;
+  height: 250px;
+  width: 1000px;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: 120px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1 solid rgb(0,0,0,.125);
+  border-radius: .25rem;
+
+}
+
+.middleDiv{
+  margin-top: 180px;
+}
+
+.bankAccountCreditCard{
+  position: relative;
+  height: 250px;
+  width: 1000px;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: 120px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border: 1 solid rgb(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.bankAccountCardBalance{
+  position: absolute;
+  margin-top: 135px;
+  margin-left: 10px;
+  margin-right: auto;
+  color:#434244;
+  border: 1 solid rgb(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.bankAccountCardBalanceText{
+  position: relative;
+  margin-top: 170px;
+  margin-left: 30px;
+  margin-right: auto;
+  color: #717171;
+  border: 1 solid rgb(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+.bankAccountCardRemainingBalance{
+  position: absolute;
+  margin-top: 135px;
+  margin-left: 385px;
+  margin-right: auto;
+  color:#434244;
+  border: 1 solid rgb(0,0,0,.125);
+  border-radius: .25rem;
+}
+
+
+
+.h1Custom{
+  position: absolute;
+  margin-top: -90px;
+  margin-left: 480px;
+}
+
+.h1CustomA{
+  position: absolute;
+  margin-top: -90px;
+  margin-left: 480px;
+}
+
+.h1CustomB{
+  position: absolute;
+  margin-top: -100px;
+  margin-left: 500px;
+}
+
+
+
+.h4CustomA{
+  color: #186cf0;
+  margin-left: 30px;
+}
+
+.h4CustomB{
+  position:absolute;
+  color: #717171;
+  margin-top: 170px;
+  margin-left: 370px;
+}
+
+.h4CustomC{
+  position:absolute;
+  color: #0762ef;
+  margin-top: 80px;
+  margin-left: 700px;
+}
+
+.h4CustomD{
+  position:absolute;
+  color: #0762ef;
+  margin-top: 5px;
+  margin-left: 400px;
+}
+
+.h4CustomE{
+  position:absolute;
+  color: #0762ef;
+  margin-top: 80px;
+  margin-left: 640px;
+}
+
+.h7CustomA{
+  position:absolute;
+  color: #a1a1a1;
+  font-size: 90px;
+  margin-top: -45px;
+  margin-left: 10px;
+  /* margin-top: 60px;
+  margin-left: 610px; */
+}
+
+.h7CustomB{
+  position:absolute;
+  color: #a1a1a1;
+  font-size: 90px;
+  margin-top: 60px;
+  margin-left: 610px;
+}
+
+
+.dot, .dot:before, .dot:after {
+  position: absolute;
+  width: 7px;
+  height: 8px;
+  border-radius: 10px;
+  background-color: #0762ef;
+}
+
+.dot {
+  position: absolute;
+  cursor: pointer;
+  margin-top: 90px;
+  margin-left: 870px;
+  color: #0762ef;
+}
+
+.dot:before, .dot:after {
+  content: "";
+}
+
+.dot:before {
+  right: 20px;
+  transition: right .3s ease-out;
+}
+
+.dot:after {
+  left: 20px;
+  transition: left .3s ease-out;
+}
+
+.dots:hover .dot:before {
+  right: -30px;
+}
+
+.dots:hover .dot:after {
+  left: -30px;
+}
+
+
+/* Dropup Button */
+.dropbtn {
+  position: absolute;
+  background-color: #0762ef;;
+  color: white;
+  height: 50px;
+  width: 100px;
+  font-size: 16px;
+  margin-top: 66px;
+  margin-left: -5px;
+
+}
+
+/* The container <div> - needed to position the dropup content */
+.dropup {
+  position: absolute;
+  margin-left: 850px;
+}
+
+/* Dropup content (Hidden by Default) */
+.dropup-content {
+  display: none;
+  position: relative;
+  bottom: 50px;
+  margin-left: 130px;
+  background-color: #f1f1f1;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropup */
+.dropup-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropup links on hover */
+.dropup-content a:hover {background-color: #ddd}
+
+/* Show the dropup menu on hover */
+.dropup:hover .dropup-content {
+  display: block;
+}
+
+/* Change the background color of the dropup button when the dropup content is shown */
+.dropup:hover .dropbtn {
+  background-color: #2980B9;
+}

@@ -23,6 +23,9 @@ import ResetPasswordComponent from "./components/ResetPasswordComponent";
 import ForgetPasswordEmailComponent from "./components/ForgetPasswordEmailComponent";
 import CreditCardSignUpComponent from "./components/CreditCardSignUpComponent";
 import CreditCardSignUpSuccessComponent from "./components/CreditCardSignUpSuccessComponent";
+// import UserAccountsComponent from "./components/UserAccountsComponent";
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -118,7 +121,7 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/home/user_account" component={Home} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
@@ -136,6 +139,7 @@ class App extends Component {
             <Route exact path="/forgetPasswordEmail" component={ForgetPasswordEmailComponent} />
             <Route exact path="/creditCardSignup" component={CreditCardSignUpComponent} />
             <Route exact path="/creditCardSignupSuccess" component={CreditCardSignUpSuccessComponent} />
+            {/* <Route exact path="/user_account" component={UserAccountsComponent} /> */}
 
 
 

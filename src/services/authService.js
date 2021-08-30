@@ -121,6 +121,17 @@ class AuthService {
     post(API_URL + "user_credit_card_signup?userId=" + userId + "&cardName=" + cardName);
   }
 
+  // getUserAccount(userId) {
+  //   return axios.
+  //     get(API_URL + "user_account?userId=" + userId, {
+  //     }).
+  //     then( response => {
+  //       return response.data;
+  //     });
+
+  // }
+
+
 }
 
 export default new AuthService();
