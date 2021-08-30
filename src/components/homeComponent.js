@@ -6,6 +6,9 @@ import { compose } from "redux";
 
 const API_URL = "http://localhost:8000/auth/";
 
+
+
+
 export default class Home extends Component {
     constructor(props) {
         super(props);
