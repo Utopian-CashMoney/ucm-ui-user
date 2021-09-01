@@ -6,20 +6,13 @@ pipeline {
     }
 
     stages {
-        stage('Git Pull') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'cloud-developer', url: 'https://github.com/Utopian-CashMoney/ucm-ui-user.git'
-            }
-        }
-        
         stage('SonarQube analysis') {
             steps {
                 script {
                     scannerHome = tool 'SonarQube Scanner 4.6'
                 }
                 withSonarQubeEnv('SonarQube Scanner') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=dev-ucm-userui -Dsonar.sources=. -Dsonar.host.url=http://ec2-52-55-57-2.compute-1.amazonaws.com:81 -Dsonar.login=17def81d4aa5a89e0a6760cf99977cc4ed95cbb5"
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ucm-user-ui -Dsonar.sources=. -Dsonar.host.url=http://52.55.57.2:81 -Dsonar.login=6e2bdccbd03920367342abf44880e0010f5df2c2"
                 }
             }
         }
@@ -39,7 +32,7 @@ pipeline {
                     // Install community.aws ansible packages
                     sh 'ansible-galaxy collection install community.aws'
                     // Push to S3 Bucket
-                    sh 'ansible-playbook playbooks/UploadPlaybook.yaml -e ENV=dev'
+                    sh 'ansible-playbook playbooks/UploadPlaybook.yaml -e ENV=' + env.BRANCH_NAME
                 }
             }
         }
