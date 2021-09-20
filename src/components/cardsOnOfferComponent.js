@@ -24,6 +24,10 @@ export default class CardsOnOfferComponent extends Component {
     }
 
     componentDidMount() {
+
+        document.title = 'Cards Signup';
+
+
         cardsOnOfferService.all().then(response => {
             console.log(response.data)
             this.setState({

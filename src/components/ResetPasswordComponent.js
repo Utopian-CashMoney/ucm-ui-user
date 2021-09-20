@@ -19,6 +19,11 @@ const validationSchema = Yup.object().shape({
 })
 
 export default class ResetPasswordComponent extends Component {
+
+    componentDidMount() {
+        document.title = 'Reset Password'
+    }
+
     render() {
         return (
 

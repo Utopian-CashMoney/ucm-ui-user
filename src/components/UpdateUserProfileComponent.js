@@ -59,6 +59,11 @@ const validationSchema = Yup.object().shape({
 
 
 export default class UpdateUserProfileComponent extends Component {
+
+    componentDidMount() {
+        document.title = 'Update User Profile'
+    }
+
     render() {
 
         const UserInfo = this.props.location.state;

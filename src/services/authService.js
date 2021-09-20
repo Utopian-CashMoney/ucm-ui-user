@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8000/auth/";
 
-const API_URL2 = "http://localhost:8020/loans/"; //Why the heck is this here? This is for the Loans microservice... -JP
+const API_URL2 = "http://localhost:8081/loans/"; //Why the heck is this here? This is for the Loans microservice... -JP
 
 
 class AuthService {
@@ -72,11 +72,12 @@ class AuthService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  loanSignup(salary, amount, term, interestRate) {
+  loanSignup(userId, loanName, salary, amount, term, interestRate) {
     return axios.
-      post(API_URL2 + "loansignup?"
-        + "salary=" + salary + "&amount=" + amount + "&term=" + term
-        + "&interestRate=" + interestRate
+      post(API_URL2 + "loansignup?userId="
+        + userId + "&loanName=" + loanName 
+        + "&salary=" + salary + "&amount=" + amount + "&term=" + term
+        + "&interestRate=" + interestRate 
         , {
 
         })
@@ -90,14 +91,15 @@ class AuthService {
     return JSON.parse(localStorage.getItem('loan'));
   }
 
-  loanSignupSuccess(salary, name, balance, start_date) {
+  loanSignupSuccess(salary, name, balance, start_date, term) {
     return axios.
       post(API_URL2 + "loanSignupSuccess?userId=" + this.getCurrentUser().id
         , {
           salary,
           name,
           balance,
-          start_date
+          start_date,
+          term
         })
   }
 
@@ -114,23 +116,21 @@ class AuthService {
   getAllCreditCardsFromStorage() {
     return JSON.parse(localStorage.getItem('credit'));
   }
-
+  
   
   userCreditCardSignup(userId, cardName) {
     return axios.
     post(API_URL + "user_credit_card_signup?userId=" + userId + "&cardName=" + cardName);
   }
 
-  // getUserAccount(userId) {
+  getLoanStatus(){
+    return JSON.parse(localStorage.getItem('loanStatus'));
+  }
+
+  // getLoanStatus() {
   //   return axios.
-  //     get(API_URL + "user_account?userId=" + userId, {
-  //     }).
-  //     then( response => {
-  //       return response.data;
-  //     });
-
+  //   get(API_URL2 + "loan_status?userId=" + this.getCurrentUser().id);
   // }
-
 
 }
 

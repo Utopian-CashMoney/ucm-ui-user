@@ -13,6 +13,12 @@ export default class CreditCardSignupSuccessComponent extends Component {
     
       }
 
+      componentDidMount() {
+          document.title = 'Credit Card Signup Success'
+
+    }
+
+
       logOut() {
         AuthService.logout();
       }

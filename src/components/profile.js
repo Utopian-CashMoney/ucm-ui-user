@@ -47,6 +47,11 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
+
+   
+      document.title = 'Profile Page'
+  
+
     const currentUser = AuthService.getCurrentUser();
 
     if (!currentUser) this.setState({ redirect: "/home" });

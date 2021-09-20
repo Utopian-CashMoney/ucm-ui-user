@@ -24,6 +24,7 @@ import ForgetPasswordEmailComponent from "./components/ForgetPasswordEmailCompon
 import CreditCardSignUpComponent from "./components/CreditCardSignUpComponent";
 import CreditCardSignUpSuccessComponent from "./components/CreditCardSignUpSuccessComponent";
 // import UserAccountsComponent from "./components/UserAccountsComponent";
+import LoanStatusComponent from "./components/LoanStatusComponent";
 
 
 class App extends Component {
@@ -78,7 +79,16 @@ class App extends Component {
                     Credit Cards
               </Link>
                 </li>
+
+                <div class="dropdown2">
+                  <li class="nav-item">Loans</li>
+                  <div class="dropdown2-content">
+                    <a href="/loans">Apply Loan</a>
+                    <a href="/loanStatus">Loan Status</a>
+                  </div>
+                </div>
               </div>
+
             </div>
           ) : (
 
@@ -106,11 +116,13 @@ class App extends Component {
                 Accounts
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to={"/loans"} className="nav-link">
                 Loans
               </Link>
-            </li>
+            </li> */}
+
+
             <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
                 Profile
@@ -140,9 +152,8 @@ class App extends Component {
             <Route exact path="/creditCardSignup" component={CreditCardSignUpComponent} />
             <Route exact path="/creditCardSignupSuccess" component={CreditCardSignUpSuccessComponent} />
             {/* <Route exact path="/user_account" component={UserAccountsComponent} /> */}
-
-
-
+            <Route exact path="/loanStatus" component={LoanStatusComponent} />
+            
           </Switch>
         </div>
       </div>

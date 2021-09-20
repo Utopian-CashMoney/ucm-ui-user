@@ -28,6 +28,10 @@ const validationSchema = Yup.object().shape({
 
 export default class SignupLoanComponent extends Component {
 
+    componentDidMount() {
+        document.title = 'Loan SignUp'
+    }
+
     render() {   
 
         const loanInfo = this.props.location.state;
@@ -43,8 +47,11 @@ export default class SignupLoanComponent extends Component {
                 validationSchema = {validationSchema}
 
                 onSubmit={(fields) => {
+                    const currentUser = AuthService.getCurrentUser();
 
-                    AuthService.loanSignup(fields.salary, fields.amount,
+
+                    AuthService.loanSignup(currentUser.id, loanInfo.name, 
+                        fields.salary, fields.amount,
                         fields.term, 4.5)
                         .then(
                         () => {
@@ -55,7 +62,8 @@ export default class SignupLoanComponent extends Component {
                                 salary: fields.salary,
                                 name: loanInfo.name,
                                 balance: fields.amount,
-                                start_date: loanInfo.start_date
+                                start_date: loanInfo.start_date,
+                                term : fields.term
                             }
                           })
 

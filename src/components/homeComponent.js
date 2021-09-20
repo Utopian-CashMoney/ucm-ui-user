@@ -41,6 +41,9 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
+
+        document.title = 'User DashBoard'
+
         const currentUser = AuthService.getCurrentUser();
         this.setState({ currentUser: currentUser });
 
@@ -86,118 +89,118 @@ export default class Home extends Component {
         return (
             <div class='homeCard'>
 
-            <h1 class='h1Custom' >Bank Accounts</h1>
+                <h1 class='h1Custom' >Bank Accounts</h1>
 
-            {isDebit ? (
-                <h4>
-                    {
-                        debitArray.map(x => <div class="bankAccountCreditCard"> <h4 class='h4CustomD'>DEBIT</h4><h4 class='h4CustomA'>{x.account_type.name} ({x.accountNumber.replace(/.(?=.{4})/g, '.')})
+                {isDebit ? (
+                    <h4>
+                        {
+                            debitArray.map(x => <div class="bankAccountCreditCard"> <h4 class='h4CustomD'>DEBIT</h4><h4 class='h4CustomA'>{x.account_type.name} ({x.accountNumber.replace(/.(?=.{4})/g, '.')})
                          <h4 class='bankAccountCardBalance'> ${x.balance} </h4>
-                            <h4 class='bankAccountCardRemainingBalance'> ${x.balance} </h4>
-                            <h4 class='h4CustomB'> Remaining balance</h4>
-                            <h4 class='h4CustomE'> Transfer money
+                                <h4 class='bankAccountCardRemainingBalance'> ${x.balance} </h4>
+                                <h4 class='h4CustomB'> Remaining balance</h4>
+                                <h4 class='h4CustomE'> Transfer money
                             <h7 class='h7CustomA'> | </h7>
+                                </h4>
+
+
+                                <div class="dropup">
+                                    <button class="dropbtn">Options</button>
+                                    <div class="dropup-content">
+                                        <a href="#">Account details</a>
+                                        <a href="#">Account and routing numbers </a>
+                                        <a href="#">Statements and documents</a>
+                                        <a href="#">Account services</a>
+                                        <a href="#">Transfer activity</a>
+                                    </div>
+                                </div>
+
+
+
                             </h4>
 
+                                <h4 class='bankAccountCardBalanceText'> Current Balance</h4>
+                            </div>)
+                        }
+                    </h4>
+                ) : (
+                    <div></div>
+                )}
 
-                            <div class="dropup">
-                                <button class="dropbtn">Options</button>
-                                <div class="dropup-content">
-                                    <a href="#">Account details</a>
-                                    <a href="#">Account and routing numbers </a>
-                                    <a href="#">Statements and documents</a>
-                                    <a href="#">Account services</a>
-                                    <a href="#">Transfer activity</a>
-                                </div>
-                            </div>
+                {isLoan ? (
+                    <h4>
+                        {
+                            loanArray.map(x => <div class="bankAccountCard" onClick={this.divClick}>
+
+                                <h4 class='h4CustomD'>LOAN</h4>
 
 
-
-                        </h4>
-
-                            <h4 class='bankAccountCardBalanceText'> Current Balance</h4>
-                        </div>)
-                    }
-                </h4>
-            ) : (
-                <div></div>
-            )}
-
-            {isLoan ? (
-                <h4>
-                    {
-                        loanArray.map(x => <div class="bankAccountCard" onClick={this.divClick}> 
-                        
-                            <h4 class='h4CustomD'>LOAN</h4> 
-                    
-
-                        <h4 class='h4CustomA'> {x.account_type.name} ({x.accountNumber.replace(/.(?=.{4})/g, '.')})
+                                <h4 class='h4CustomA'> {x.account_type.name} ({x.accountNumber.replace(/.(?=.{4})/g, '.')})
 
                             <h4 class='bankAccountCardBalance'> ${x.balance} </h4>
-                            <h4 class='bankAccountCardRemainingBalance'> ${x.balance} </h4>
-                            <h4 class='h4CustomB'> Remaining balance</h4>
-                            <h4 class='h4CustomC'> Pay Loan
+                                    <h4 class='bankAccountCardRemainingBalance'> ${x.balance} </h4>
+                                    <h4 class='h4CustomB'> Remaining balance</h4>
+                                    <h4 class='h4CustomC'> Pay Loan
                             <h7 class='h7CustomA'> | </h7>
-                            </h4>
+                                    </h4>
 
 
-                            <div class="dropup">
-                                <button class="dropbtn">Options</button>
-                                <div class="dropup-content">
-                                    <a href="#">Account details</a>
-                                    <a href="#">Account and routing numbers </a>
-                                    <a href="#">Statements and documents</a>
-                                    <a href="#">Account services</a>
-                                    <a href="#">Transfer activity</a>
-                                </div>
-                            </div>
+                                    <div class="dropup">
+                                        <button class="dropbtn">Options</button>
+                                        <div class="dropup-content">
+                                            <a href="#">Account details</a>
+                                            <a href="#">Account and routing numbers </a>
+                                            <a href="#">Statements and documents</a>
+                                            <a href="#">Account services</a>
+                                            <a href="#">Transfer activity</a>
+                                        </div>
+                                    </div>
 
-                        </h4>
-                            <h4 class='bankAccountCardBalanceText'> Current Balance</h4>
+                                </h4>
+                                <h4 class='bankAccountCardBalanceText'> Current Balance</h4>
 
-                        </div>)
-                    }
+                            </div>)
+                        }
 
-                </h4>
-            ) : (
-                <div></div>
-            )}
-    
-            {isCreditAccount ? (
-                <h4>
-                    {
-                        creditArry.map(x => <div class="bankAccountCreditCard"> <h4 class='h4CustomD'>Credit Card</h4><h4 class='h4CustomA'>{x.account_type.name} ({x.accountNumber.replace(/.(?=.{4})/g, '.')})
+                    </h4>
+                ) : (
+                    <div></div>
+                )}
+
+                {isCreditAccount ? (
+                    <h4>
+                        {
+                            creditArry.map(x => <div class="bankAccountCreditCard"> <h4 class='h4CustomD'>Credit Card</h4><h4 class='h4CustomA'>{x.account_type.name} ({x.accountNumber.replace(/.(?=.{4})/g, '.')})
                          <h4 class='bankAccountCardBalance'> ${x.balance} </h4>
-                            <h4 class='bankAccountCardRemainingBalance'> ${x.balance} </h4>
-                            <h4 class='h4CustomB'> Remaining balance</h4>
-                            <h4 class='h4CustomC'> Pay Card
+                                <h4 class='bankAccountCardRemainingBalance'> ${x.balance} </h4>
+                                <h4 class='h4CustomB'> Remaining balance</h4>
+                                <h4 class='h4CustomC'> Pay Card
                             <h7 class='h7CustomA'> | </h7>
+                                </h4>
+
+
+                                <div class="dropup">
+                                    <button class="dropbtn">Options</button>
+                                    <div class="dropup-content">
+                                        <a href="#">Account details</a>
+                                        <a href="#">Account and routing numbers </a>
+                                        <a href="#">Statements and documents</a>
+                                        <a href="#">Account services</a>
+                                        <a href="#">Transfer activity</a>
+                                    </div>
+                                </div>
+
+
+
                             </h4>
 
-
-                            <div class="dropup">
-                                <button class="dropbtn">Options</button>
-                                <div class="dropup-content">
-                                    <a href="#">Account details</a>
-                                    <a href="#">Account and routing numbers </a>
-                                    <a href="#">Statements and documents</a>
-                                    <a href="#">Account services</a>
-                                    <a href="#">Transfer activity</a>
-                                </div>
-                            </div>
-
-
-
-                        </h4>
-
-                            <h4 class='bankAccountCardBalanceText'> Current Balance</h4>
-                        </div>)
-                    }
-                </h4>
-            ) : (
-                <div></div>
-            )}
-        </div>
+                                <h4 class='bankAccountCardBalanceText'> Current Balance</h4>
+                            </div>)
+                        }
+                    </h4>
+                ) : (
+                    <div></div>
+                )}
+            </div>
 
         )
     }

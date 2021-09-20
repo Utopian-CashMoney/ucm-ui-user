@@ -15,6 +15,11 @@ const validationSchema = Yup.object().shape({
 })
 
 export default class ForgetPasswordComponent extends Component {
+
+    componentDidMount() {
+        document.title = 'Forget Password'
+    }
+
     render() {
         return (
 
@@ -30,7 +35,7 @@ export default class ForgetPasswordComponent extends Component {
 
                     this.props.history.push("/forgetPasswordEmail");
                     window.location.reload();
-                  
+
                     <div>Hello</div>
 
                 }}
@@ -41,13 +46,13 @@ export default class ForgetPasswordComponent extends Component {
                     <Form>
                         <div id="card2">
                             <div id="card-content2">
-                                    <div className="form-group">
-                                        <label className="labelForgetPassword" className="forgetEmail" htmlFor="email">Email <h7 style={{ color: 'red'}}>*</h7> </label>
-                                        <Field name="email" type="text" placeholder="Enter Email Here" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} className="forgetPasswordField"/>
-                                        <ErrorMessage name="email" component="div" className="invalid-feedback" />
-                                    </div>
-                                    <button className="forgetSend" type="submit" disabled={!touched.email || errors.email}>Send</button>
-                                    <p class="message">Not registered? <a href="/signup">Create an account</a></p>
+                                <div className="form-group">
+                                    <label className="labelForgetPassword" className="forgetEmail" htmlFor="email">Email <h7 style={{ color: 'red' }}>*</h7> </label>
+                                    <Field name="email" type="text" placeholder="Enter Email Here" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} className="forgetPasswordField" />
+                                    <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                                </div>
+                                <button className="forgetSend" type="submit" disabled={!touched.email || errors.email}>Send</button>
+                                <p class="message">Not registered? <a href="/signup">Create an account</a></p>
                             </div>
                         </div>
                     </Form>

@@ -29,13 +29,18 @@ export default class LoansOnOfferComponent extends Component {
         this.handleSubmitPersonalLoan = this.handleSubmitPersonalLoan.bind(this);
 
     }
+
+    componentDidMount() {
+        document.title = 'Available Loans'
+    }
+
     
 
      handleSubmitHomeLoan() {
         this.props.history.push({
             pathname: '/signupLoan',
             state: {
-                name: "Home",
+                name: "MORTGAGE",
                 balance: "",
                 start_date: nowDate.getDate()
             }
@@ -46,7 +51,7 @@ export default class LoansOnOfferComponent extends Component {
         this.props.history.push({
             pathname: '/signupLoan',
             state: {
-                name: "Auto",
+                name: "AUTO",
                 balance: "",
                 start_date: nowDate.getDate()
             }
@@ -57,7 +62,7 @@ export default class LoansOnOfferComponent extends Component {
         this.props.history.push({
             pathname: '/signupLoan',
             state: {
-                name: "Personal",
+                name: "PERSONAL",
                 balance: "",
                 start_date: nowDate.getDate()
             }
