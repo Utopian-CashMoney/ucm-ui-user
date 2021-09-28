@@ -45,7 +45,7 @@ export default class SignupLoanComponent extends Component {
                 onSubmit={(fields) => {
 
                     AuthService.loanSignup(fields.salary, fields.amount,
-                        fields.term, 2.5)
+                        fields.term, 4.5)
                         .then(
                         () => {
 
