@@ -20,7 +20,7 @@ pipeline {
         stage('Build NodeJS') {
             steps {
                 // Install NodeJS dependencies
-                sh 'npm install --force'
+                sh 'npm install'
                 // Build NodeJS project
                 sh 'npm run build'
             }
