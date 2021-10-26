@@ -3,20 +3,56 @@
 - name: Build and Upload User Frontend to S3 Bucket
   hosts: localhost
 
+  vars:
+    bucket_name: ucm-{{ ENV }}-ui-user
+    bucket_url: '{{ bucket_name }}.s3-website-us-east-1.amazonaws.com'
+    aws_region: us-east-1
+
   tasks:
     - name: Create S3 bucket if it doesn't exist
       amazon.aws.aws_s3:
         bucket: ucm-{{ ENV }}-ui-user
         mode: create
         permission: public-read
+
     - name: Configure S3 bucket to static website
       s3_website:
         name: ucm-{{ ENV }}-ui-user
         suffix: index.html
         state: present
+
     - name: Upload user frontend to S3 bucket
       community.aws.s3_sync:
         bucket: ucm-{{ ENV }}-ui-user
         file_root: ../build
         permission: public-read
         include: "*"
+        
+    - name: Create a basic CloudFront distribution
+      community.aws.cloudfront_distribution:
+        state: present
+        caller_reference: 'user-{{ ENV }}-cashmoney'
+        default_origin_domain_name: '{{ bucket_url }}'
+        aliases: ['user-{{ ENV }}.utopiancashmoney.de']
+        price_class: PriceClass_100
+        viewer_certificate:
+          acm_certificate_arn: arn:aws:acm:us-east-1:202447729588:certificate/24295935-8af6-4c69-956c-37d41dec074b
+          ssl_support_method: sni-only
+        tags:
+          Name: '{{ ENV }} User UI distribution'
+          Project: 'CashMoney Banking'
+          Priority: '1'
+        origins:
+          - id: 'user frontend origin'
+            domain_name: 
+            origin_path: /user
+      register: dist
+      
+    - name: Create Route53 record pointing to CloudFront distribution
+      community.aws.route53:
+        state: present
+        zone: utopiancashmoney.de
+        record: 'user-{{ ENV }}.utopiancashmoney.de'
+        type: CNAME
+        ttl: 60
+        value: '{{ dist.domain_name }}'
