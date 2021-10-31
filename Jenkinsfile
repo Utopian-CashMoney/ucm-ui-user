@@ -24,6 +24,7 @@ pipeline {
         
         stage('Build NodeJS') {
             steps {
+                sh 'npm cache clean --force'
                 // Install NodeJS dependencies
                 sh 'npm install'
                 // Build NodeJS project
