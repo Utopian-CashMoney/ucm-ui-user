@@ -5,6 +5,11 @@ pipeline {
         nodejs 'nodejs'
     }
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+        withAWS(credentials: 'jenkins-credentials')
+    }
+
     stages {
         stage('SonarQube analysis') {
             steps {
@@ -28,13 +33,17 @@ pipeline {
         
         stage('Push to S3 Bucket') {
             steps {
-                withAWS(credentials: 'jenkins-credentials', region: 'us-east-1') {
-                    // Install community.aws ansible packages
-                    sh 'ansible-galaxy collection install community.aws'
-                    // Push to S3 Bucket
-                    sh 'ansible-playbook playbooks/UploadPlaybook.yaml -e ENV=' + env.BRANCH_NAME
-                }
+                // Install community.aws ansible packages
+                sh 'ansible-galaxy collection install community.aws'
+                // Push to S3 Bucket
+                sh 'ansible-playbook playbooks/UploadPlaybook.yaml -e ENV=' + env.BRANCH_NAME
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
