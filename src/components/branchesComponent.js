@@ -16,6 +16,9 @@ export default class BranchesComponent extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Branches';
+
+
         BranchService.all().then(response => {
             console.log(response.data)
             this.setState({

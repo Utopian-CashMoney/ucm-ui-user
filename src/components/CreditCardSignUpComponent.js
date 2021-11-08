@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import AuthService from "../services/authService";
 import axios from "axios";
+import Modal from 'react-modal';
+
 
 
 const API_URL = "http://localhost:8000/auth/";
+const Accounts_API_URL = "http://localhost:8081/api/creditcards/";
 
 
 export default class CreditCardSignupComponent extends Component {
 
     constructor(props) {
         super(props);
-       // this.handleCardSignup = this.handleCardSignup.bind(this);
+        // this.handleCardSignup = this.handleCardSignup.bind(this);
 
         this.state = {
             creditCard: [
@@ -22,20 +25,29 @@ export default class CreditCardSignupComponent extends Component {
             ]
             ,
             currentUser: { username: "" },
+            errorMessage: ''
         };
+
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleHideModal = this.handleHideModal.bind(this);
 
     }
 
     componentDidMount() {
-        const creditCard = AuthService.getAllCreditCardsFromStorage();
+
+        document.title = 'Credit Cards Signup';
+
+        //  const creditCard = AuthService.getAllCreditCardsFromStorage();
 
 
-        this.setState({ creditCard: creditCard })
+        //  this.setState({ creditCard: creditCard })
         this.getCards();
 
         const currentUser = AuthService.getCurrentUser();
         this.setState({ currentUser: currentUser, userReady: true })
         this.getUser(currentUser.id);
+
+
 
     }
 
@@ -50,45 +62,57 @@ export default class CreditCardSignupComponent extends Component {
     }
 
     getCards() {
+        // axios
+        //     .get(API_URL + "get_credit_cards")
+        //     .then(response => {
+        //         this.setState({ creditCard: response.data }, () => {
+
+        //         })
+        //     })
         axios
-            .get(API_URL + "get_credit_cards")
+            .get(Accounts_API_URL + "credit_card_on_offer")
             .then(response => {
                 this.setState({ creditCard: response.data }, () => {
+
                 })
             })
             .catch(err => console.log(err));
     }
 
     handleCardSignup(userId, cardName) {
-               
-            AuthService.userCreditCardSignup(userId, cardName);
+        AuthService.userCreditCardSignup(userId, cardName)
+            .then(response => {
+                this.props.history.push("/home/user_account");
+            })
+            .catch(error => {
+                this.setState({
+                    errorMessage: error.message
+                })
 
+                console.log("ERRORRRRR: " + error)
+            })
+
+    }
+
+    handleOpenModal() {
+        this.setState({
+            isOpen: true,
+        });
+    }
+
+    handleHideModal() {
+        this.setState({
+            isOpen: false
+        });
+        this.props.history.push("/home/user_account");
     }
 
 
 
     render() {
-
-        const creditCard = this.state.creditCard;
         const { currentUser } = this.state;
-
-        // Fix this mess with loop or something after
-
-
-        const name = Object.values(creditCard.map(x => x.name))[0]
-        const type = Object.values(creditCard.map(x => x.type))[0]
-        const apr = Object.values(creditCard.map(x => x.apr))[0]
-        const perks = Object.values(creditCard.map(x => x.perks))[0]
-
-        const nameTwo = Object.values(creditCard.map(x => x.name))[1]
-        const typeTwo = Object.values(creditCard.map(x => x.type))[1]
-        const aprTwo = Object.values(creditCard.map(x => x.apr))[1]
-        const perksTwo = Object.values(creditCard.map(x => x.perks))[1]
-
-        const nameThree = Object.values(creditCard.map(x => x.name))[2]
-        const typeThree = Object.values(creditCard.map(x => x.type))[2]
-        const aprThree = Object.values(creditCard.map(x => x.apr))[2]
-        const perksThree = Object.values(creditCard.map(x => x.perks))[2]
+        const creditCardObj = this.state.creditCard;
+        const creditCardArray = Array.from(creditCardObj);
 
         return (
             <div>
@@ -104,22 +128,19 @@ export default class CreditCardSignupComponent extends Component {
 
 
                     <div class="wrapper2">
-                        <h5 > * Name: {name}</h5>
-                        <h5 > * Name: {nameTwo} </h5>
-                        <h5 > * Name: {nameThree} </h5>
-                        <h5 > * Card: {type} </h5>
-                        <h5 > * Card: {typeTwo} </h5>
-                        <h5 > * Card: {typeThree} </h5>
-                        <h5 > * APR: {apr} </h5>
-                        <h5 > * APR: {aprTwo} </h5>
-                        <h5 > * APR: {aprThree} </h5>
-                        <h5 > * Perks: {perks} </h5>
-                        <h5 > * Perks: {perksTwo} </h5>
-                        <h5 > * Perks: {perksThree} </h5>
+                        {creditCardArray.map(x =>
+                            <div class='creditName'>
+                                <h5>CashMoney {x.name}</h5>
+                                <h7 class='creditNameTwo'>CREDIT CARD</h7>
+                                <li class='creditAprPerks'>APR: {x.apr}</li>
+                                <li class='creditAprPerks'>{x.perks}</li>
+                                <button class='creditApplyBtn' onClick={() => { this.handleCardSignup(currentUser.id, x.name); this.handleOpenModal(); }}>Apply Now</button>
+                                <button class='creditLearnInfoBtn'>More Info</button>
+                            </div>)}
                     </div>
 
                     <div class="wrapper3">
-                        <a href="/creditCardSignupSuccess">
+                        {/* <a href="/creditCardSignupSuccess">
                             <button className="btnApply" onClick={() => { this.handleCardSignup(currentUser.id, name)}}>Apply</button>
                         </a>
                         <a href="/creditCardSignupSuccess">
@@ -127,13 +148,41 @@ export default class CreditCardSignupComponent extends Component {
                         </a>
                         <a href="/creditCardSignupSuccess">
                             <button className="btnApply" onClick={() => { this.handleCardSignup(currentUser.id, nameThree)}}>Apply</button>
-                        </a>
+                        </a> */}
 
                     </div>
+
+
+
+                    {this.state.errorMessage &&
+
+                        <Modal className='ModalStyle' isOpen={this.state.isOpen} onRequestHide={this.handleHideModal}>
+                            <div class="modal-header">
+
+                                <div class="modal-title">
+                                    <h4 className='accountDeleteConfirm'>Better Luck Next Time </h4>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-body">
+                                <h4>
+                                    "Loan Signup limit reached! Please Pay Off the current loans and come back at future time to re-apply,
+                                    Thank You!"
+                        </h4>
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button className='btn btn-default' onClick={this.handleHideModal}>
+                                    Close
+                                </button>
+
+                            </div>
+                        </Modal>
+                    }
                 </div>
             </div>
-
-
         )
     }
 

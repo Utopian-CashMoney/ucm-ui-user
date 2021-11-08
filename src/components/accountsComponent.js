@@ -20,6 +20,9 @@ export default class AccountsComponent extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Accounts';
+
+
         AccountService.all().then(response => {
             console.log(response.data)
             this.setState({

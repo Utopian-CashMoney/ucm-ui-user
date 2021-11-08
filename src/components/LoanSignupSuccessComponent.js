@@ -2,6 +2,11 @@ import React, { Component } from "react";
 
 export default class LoanSignupSuccessComponent extends Component {
 
+
+    componentDidMount() {
+        document.title = 'Loan SignUp Success'
+    }
+
     render(){
         
         return(

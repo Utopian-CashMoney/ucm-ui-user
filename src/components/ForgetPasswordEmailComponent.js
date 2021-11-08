@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 
 export default class ForgetPasswordEmailComponent extends Component {
+
+    componentDidMount() {
+        
+        document.title = 'Forget Password Email'
+
+    }
+
     render() {
         return (
 

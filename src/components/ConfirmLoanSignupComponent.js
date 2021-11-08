@@ -20,6 +20,10 @@ export default class ConfirmLoanSignupComponent extends Component {
 
 
       componentDidMount() {
+
+        document.title = 'Confirm Loan Signup';
+
+
         const loanPayments = AuthService.getLoanPercent();
     
         if (!loanPayments) this.setState({ redirect: "/home" });
@@ -32,11 +36,14 @@ export default class ConfirmLoanSignupComponent extends Component {
 
       handleConfirm(){
         const loanInfo = this.props.location.state;
+
+        console.log("name " + loanInfo.name)
     
            AuthService.loanSignupSuccess(loanInfo.salary,
            loanInfo.name,
            loanInfo.balance,
-           loanInfo.start_date)
+           loanInfo.start_date,
+           loanInfo.term)
            .then(
              () => {
 

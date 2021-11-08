@@ -47,6 +47,11 @@ const validationSchema = Yup.object().shape({
 
 
 export default class signupComponent extends Component {
+
+    componentDidMount() {
+        document.title = 'SignUp Page'
+    }
+
     render() {        
         return (
             <Formik 
