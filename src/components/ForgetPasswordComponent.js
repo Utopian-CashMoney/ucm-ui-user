@@ -30,8 +30,6 @@ export default class ForgetPasswordComponent extends Component {
 
                     this.props.history.push("/forgetPasswordEmail");
                     window.location.reload();
-                  
-                    <div>Hello</div>
 
                 }}
 
