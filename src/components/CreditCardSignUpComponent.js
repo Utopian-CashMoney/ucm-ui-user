@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import AuthService from "../services/authService";
 import axios from "axios";
+import Modal from 'react-modal';
+
 
 
 const API_URL = "http://localhost:8000/auth/";
+const Accounts_API_URL = "http://localhost:8081/api/creditcards/";
 
 
 export default class CreditCardSignupComponent extends Component {
@@ -22,7 +25,11 @@ export default class CreditCardSignupComponent extends Component {
             ]
             ,
             currentUser: { username: "" },
+            errorMessage: ''
         };
+
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleHideModal = this.handleHideModal.bind(this);
 
     }
 
@@ -55,8 +62,15 @@ export default class CreditCardSignupComponent extends Component {
     }
 
     getCards() {
+        // axios
+        //     .get(API_URL + "get_credit_cards")
+        //     .then(response => {
+        //         this.setState({ creditCard: response.data }, () => {
+
+        //         })
+        //     })
         axios
-            .get(API_URL + "get_credit_cards")
+            .get(Accounts_API_URL + "credit_card_on_offer")
             .then(response => {
                 this.setState({ creditCard: response.data }, () => {
 
@@ -66,9 +80,33 @@ export default class CreditCardSignupComponent extends Component {
     }
 
     handleCardSignup(userId, cardName) {
-        AuthService.userCreditCardSignup(userId, cardName);
-        this.props.history.push("/home/user_account")
+        AuthService.userCreditCardSignup(userId, cardName)
+            .then(response => {
+                this.props.history.push("/home/user_account");
+            })
+            .catch(error => {
+                this.setState({
+                    errorMessage: error.message
+                })
+
+                console.log("ERRORRRRR: " + error)
+            })
+
     }
+
+    handleOpenModal() {
+        this.setState({
+            isOpen: true,
+        });
+    }
+
+    handleHideModal() {
+        this.setState({
+            isOpen: false
+        });
+        this.props.history.push("/home/user_account");
+    }
+
 
 
     render() {
@@ -96,7 +134,7 @@ export default class CreditCardSignupComponent extends Component {
                                 <h7 class='creditNameTwo'>CREDIT CARD</h7>
                                 <li class='creditAprPerks'>APR: {x.apr}</li>
                                 <li class='creditAprPerks'>{x.perks}</li>
-                                <button class='creditApplyBtn' onClick={() => { this.handleCardSignup(currentUser.id, x.name)}}>Apply Now</button>
+                                <button class='creditApplyBtn' onClick={() => { this.handleCardSignup(currentUser.id, x.name); this.handleOpenModal(); }}>Apply Now</button>
                                 <button class='creditLearnInfoBtn'>More Info</button>
                             </div>)}
                     </div>
@@ -113,6 +151,36 @@ export default class CreditCardSignupComponent extends Component {
                         </a> */}
 
                     </div>
+
+
+
+                    {this.state.errorMessage &&
+
+                        <Modal className='ModalStyle' isOpen={this.state.isOpen} onRequestHide={this.handleHideModal}>
+                            <div class="modal-header">
+
+                                <div class="modal-title">
+                                    <h4 className='accountDeleteConfirm'>Better Luck Next Time </h4>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-body">
+                                <h4>
+                                    "Loan Signup limit reached! Please Pay Off the current loans and come back at future time to re-apply,
+                                    Thank You!"
+                        </h4>
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button className='btn btn-default' onClick={this.handleHideModal}>
+                                    Close
+                                </button>
+
+                            </div>
+                        </Modal>
+                    }
                 </div>
             </div>
         )

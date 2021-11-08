@@ -25,6 +25,10 @@ import CreditCardSignUpComponent from "./components/CreditCardSignUpComponent";
 import CreditCardSignUpSuccessComponent from "./components/CreditCardSignUpSuccessComponent";
 // import UserAccountsComponent from "./components/UserAccountsComponent";
 import LoanStatusComponent from "./components/LoanStatusComponent";
+import PayLoanComponent from "./components/PayLoanComponent";
+import UserAccountActivityComponent from "./components/UserAccountActivityComponent";
+
+
 
 
 class App extends Component {
@@ -153,6 +157,8 @@ class App extends Component {
             <Route exact path="/creditCardSignupSuccess" component={CreditCardSignUpSuccessComponent} />
             {/* <Route exact path="/user_account" component={UserAccountsComponent} /> */}
             <Route exact path="/loanStatus" component={LoanStatusComponent} />
+            <Route exact path="/payLoan" component={PayLoanComponent} />
+            <Route exact path="/userAccountActivity" component={UserAccountActivityComponent} />
             
           </Switch>
         </div>

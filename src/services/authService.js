@@ -1,8 +1,17 @@
 import axios from "axios";
 
+// Use this if you want to change the url in application.properties file in user MS
+// const API_URL = "http://localhost:8000/api/auth/";
+
 const API_URL = "http://localhost:8000/auth/";
 
-const API_URL2 = "http://localhost:8081/loans/"; //Why the heck is this here? This is for the Loans microservice... -JP
+
+const API_URL2 = "http://localhost:8081/loans/"; 
+
+const Accounts_API_URL = "http://localhost:8081/api/creditcards/";
+
+const Loans_API_URL = "http://localhost:8081/api/loans/";
+
 
 
 class AuthService {
@@ -74,7 +83,7 @@ class AuthService {
 
   loanSignup(userId, loanName, salary, amount, term, interestRate) {
     return axios.
-      post(API_URL2 + "loansignup?userId="
+      post(Loans_API_URL + "loansignup?userId="
         + userId + "&loanName=" + loanName 
         + "&salary=" + salary + "&amount=" + amount + "&term=" + term
         + "&interestRate=" + interestRate 
@@ -93,7 +102,7 @@ class AuthService {
 
   loanSignupSuccess(salary, name, balance, start_date, term) {
     return axios.
-      post(API_URL2 + "loanSignupSuccess?userId=" + this.getCurrentUser().id
+      post(Loans_API_URL + "loanSignupSuccess?userId=" + this.getCurrentUser().id
         , {
           salary,
           name,
@@ -116,21 +125,44 @@ class AuthService {
   getAllCreditCardsFromStorage() {
     return JSON.parse(localStorage.getItem('credit'));
   }
-  
-  
+
   userCreditCardSignup(userId, cardName) {
     return axios.
-    post(API_URL + "user_credit_card_signup?userId=" + userId + "&cardName=" + cardName);
+    post(Accounts_API_URL + "user_credit_card_signup?userId=" + userId + "&cardName=" + cardName)
+    // .then(response => {
+    //   localStorage.setItem("cardsignup", response.data);
+    //     return response.data;
+    // });
   }
 
   getLoanStatus(){
     return JSON.parse(localStorage.getItem('loanStatus'));
   }
 
-  // getLoanStatus() {
-  //   return axios.
-  //   get(API_URL2 + "loan_status?userId=" + this.getCurrentUser().id);
-  // }
+  submitPayment(userId, amount, payeeAccountNumber){
+    return axios.
+      post(Loans_API_URL + "submit_payment?userId=" + userId + "&amount=" + amount + "&payeeAccountNumber=" + payeeAccountNumber, {
+      },
+      {
+        "headers": {
+          'Content-Type': 'application/json',
+        }
+        
+      }
+      )
+    }
+
+    getAccountActivity(payeeAccountNumber){
+      return axios
+      .get(Loans_API_URL + "account_activity?payeeAccountNumber=" + payeeAccountNumber,{
+
+      })
+      .then(response => {
+          localStorage.setItem("account_activity", JSON.stringify(response.data));
+        return response.data;
+      });
+  }
+
 
 }
 

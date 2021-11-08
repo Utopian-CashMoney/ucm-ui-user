@@ -3,7 +3,7 @@ import AuthService from "../services/authService";
 import axios from "axios";
 import authService from "../services/authService";
 
-const API_URL2 = "http://localhost:8081/loans/";
+const API_URL2 = "http://localhost:8081/api/loans/";
 
 
 

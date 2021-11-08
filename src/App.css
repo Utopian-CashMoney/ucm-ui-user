@@ -821,6 +821,16 @@ label {
   margin-left: 700px;
 }
 
+.h4CustomCisDisabled {
+  position:absolute;
+  color: #0762ef;
+  margin-top: 80px;
+  margin-left: 700px;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
 .h4CustomD{
   position:absolute;
   color: #0762ef;
@@ -1113,3 +1123,24 @@ font-weight: bolder;
   margin-left: 200px;
   color: #9e9e9e;
 }
+
+.modelbodyPayFrom{
+  position: relative;
+  padding-left: 150px;
+  font-size: larger;
+  font-weight:bolder;
+}
+
+.modelbodyAmount{
+  position: relative;
+  padding-left: 330px;
+  font-size: x-large;
+  font-weight:bolder;
+}
+
+.loanPayAmount{
+  margin-left: 280px;
+  width: 200px;
+}
+
+
